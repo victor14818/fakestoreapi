@@ -71,41 +71,41 @@ product.seed.repository.js
 ## Endpoints Disponibles
 ### Sincronizar Productos
 ```bash
-curl --location --request POST 'http://localhost:8080/products/sync' \
---header 'Content-Type: application/json' \
---data ''
+curl -X POST 'http://localhost:8080/products/sync' \
+-H 'Content-Type: application/json' \
+-d '{}'
 ```
 
 ### Listado de Catálogo
 ```bash
-curl --location 'http://localhost:8080/catalog?pageSize=20&category=Accessories&minPrice=20&maxPrice=25.50&page=0' \
---header 'Content-Type: application/json'
+curl 'http://localhost:8080/catalog?pageSize=20&category=Accessories&minPrice=20&maxPrice=25.50&page=0' \
+-H 'Content-Type: application/json'
 ```
 
 ### Detalle de Producto 
 ```bash
-curl --location 'http://localhost:8080/catalog/1'
+curl 'http://localhost:8080/catalog/1' \
+-H 'Content-Type: application/json'
 ```
 
 ### Crear Carrito
 ```bash
-curl --location 'http://localhost:8080/cart' \
---header 'Content-Type: application/json' \
---data '{ "userId": 1 }'
+curl -X POST 'http://localhost:8080/cart' \
+-H 'Content-Type: application/json' \
+-d '{ "userId": 1 }'
 ```
 
 ### Agregar Producto al Carrito
 ```bash
-curl --location 'http://localhost:8080/cart/1/items' \
---header 'Content-Type: application/json' \
---data '{ "productId": 4, "quantity": 2 }'
+curl -X POST 'http://localhost:8080/cart/1/items' \
+-H 'Content-Type: application/json' \
+-d '{ "productId": 4, "quantity": 2 }'
 ```
 
 ## Detalle del Carrito
 ```bash
-curl --location 'http://localhost:8080/cart/1' \
---header 'Content-Type: application/json' \
---data ''
+curl 'http://localhost:8080/cart/1' \
+-H 'Content-Type: application/json'
 ```
 # Parte B - Modelo de Datos
 - Las tablas e índices se crean automáticamente al iniciar la aplicación.
