@@ -128,3 +128,7 @@ Estas consultas pueden ejecutarse directamente sobre la base de datos SQLite gen
 # Parte D - Optimización SQL
 
 [Explain Plans](sql/explain/explain_plans.md)
+
+# Parte E - Prompting
+
+[Prompting](prompting/prompt.md)
