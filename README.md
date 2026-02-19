@@ -124,3 +124,7 @@ sql/cobertura-productos-carritos.sql
 sql/cambios-productos.sql
 ```
 Estas consultas pueden ejecutarse directamente sobre la base de datos SQLite generada por la aplicación.
+
+# Parte D - Optimización SQL
+
+[Explain Plans](sql/explain/explain_plans.md)
