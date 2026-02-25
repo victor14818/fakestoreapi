@@ -13,7 +13,7 @@ SELECT
   COUNT(*) - 1 AS change_count
 FROM product_versions pv
 GROUP BY pv.product_id
-HAVING change_count > 1
+HAVING change_count > 1;
 
 -- Tiempo promedio entre cambios.
 WITH version_diffs AS (
