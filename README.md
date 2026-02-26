@@ -22,6 +22,11 @@ npm install
 node index.js
 ```
 
+**Correr unit tests**
+```
+npm test
+```
+
 # Dependencias
 ```json
 "dependencies": {
