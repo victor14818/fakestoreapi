@@ -9,20 +9,24 @@ class CatalogController {
 
   async getCatalog(req, res, next) {
     try {
-      let { page, pageSize, category, minPrice, maxPrice } = req.query;
+      let { page, pageSize, category, minPrice, maxPrice, sortBy, sortOrder } = req.query;
       
       page = Number(page) || 0;
       pageSize = Number(pageSize) || 10;
       category = category !== undefined ? category : null;
       minPrice = minPrice !== undefined ? Number(minPrice) : null;
       maxPrice = maxPrice !== undefined ? Number(maxPrice) : null;
+      sortBy = sortBy !== undefined ? sortBy : null;
+      sortOrder = sortOrder !== undefined ? sortOrder : 'asc';
 
       const result = await this.getCatalogUseCase.execute({
         page,
         pageSize,
         category,
         minPrice,
-        maxPrice
+        maxPrice,
+        sortBy,
+        sortOrder
       });
 
       return res.status(200).json({

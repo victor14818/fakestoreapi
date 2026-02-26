@@ -17,9 +17,18 @@ class GetCatalogUseCase {
     }
     
     if (filters.minPrice !== null && filters.maxPrice !== null && filters.minPrice > filters.maxPrice) {
-        throw new DomainValidationError(
-            "minPrice cannot be greater than maxPrice"
-        );
+        throw new DomainValidationError("minPrice cannot be greater than maxPrice");
+    }
+
+    const allowedSortBy = ['price', 'latest'];
+    const allowedSortOrder = ['asc', 'desc'];
+
+    if (filters.sortBy && !allowedSortBy.includes(filters.sortBy)) {
+      throw new DomainValidationError(`Invalid sortBy value ${filters.sortBy}`);
+    }
+
+    if (filters.sortOrder && !allowedSortOrder.includes(filters.sortOrder)) {
+      throw new DomainValidationError(`Invalid sortOrder value ${filters.sortOrder}`);
     }
 
     return this.productRepository.findCatalog(filters);

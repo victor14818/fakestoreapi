@@ -25,6 +25,8 @@ node index.js
 # Dependencias
 ```json
 "dependencies": {
+    "axios": "^1.13.5",
+    "axios-retry": "^4.5.0",
     "better-sqlite3": "^12.6.2",
     "express": "^5.2.1"
 }
@@ -78,7 +80,7 @@ curl -X POST 'http://localhost:8080/products/sync' \
 
 ### Listado de Catálogo
 ```bash
-curl 'http://localhost:8080/catalog?pageSize=20&category=Accessories&minPrice=20&maxPrice=25.50&page=0' \
+curl 'http://localhost:8080/catalog?pageSize=20&category=electronics&minPrice=20&maxPrice=25.50&page=0&sortBy=price&sortOrder=desc' \
 -H 'Content-Type: application/json'
 ```
 

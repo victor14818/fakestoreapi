@@ -43,13 +43,34 @@ class SQLiteProductRepository extends ProductRepository {
       params.push(filters.maxPrice);
     }
 
+    let orderBy = '';
+
+    if (filters.sortBy) {
+      const sortByMap = {
+        price: 'price',
+        latest: 'created_at'
+      };
+
+      const sortOrderMap = {
+        asc: 'ASC',
+        desc: 'DESC'
+      };
+
+      const column = sortByMap[filters.sortBy];
+      const direction = sortOrderMap[filters.sortOrder] || 'ASC';
+
+      if (column) {
+        orderBy = ` ORDER BY ${column} ${direction}`;
+      }
+    }
+
     // Count total records
     const countSql = `SELECT COUNT(*) as total FROM products ${where}`;
     const totalRow = this.db.prepare(countSql).get(...params);
     const total = totalRow.total;
 
     // Query data
-    const dataSql = `SELECT * FROM products ${where} LIMIT ? OFFSET ?`;
+    const dataSql = `SELECT * FROM products ${where} ${orderBy} LIMIT ? OFFSET ?`;
     const items = this.db.prepare(dataSql).all(
       ...params,
       filters.pageSize,
