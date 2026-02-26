@@ -35,6 +35,7 @@ class CatalogController {
           page,
           pageSize,
           total: result.total,
+          total_pages: Math.ceil(result.total / pageSize),
           hasNext: (page + 1) * pageSize < result.total
         }
       });
