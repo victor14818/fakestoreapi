@@ -5,7 +5,7 @@ class SQLiteProductRepository extends ProductRepository {
 
   constructor(dbConnection) {
     super();
-    this.db = dbConnection.getConnection();
+    this.db = dbConnection;
   }
 
   findAll() {

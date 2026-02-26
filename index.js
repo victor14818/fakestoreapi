@@ -34,9 +34,10 @@ const AxiosFakeStoreApiGateway = require('./infrastructure/gateways/fakestoreapi
 app.use(express.json());
 
 // Dependency Injection
-const productRepo = new SQLiteProductRepository(sqliteConnection);
+const db = sqliteConnection.getConnection();
+const productRepo = new SQLiteProductRepository(db);
 const productSeedRepo = new SeedProductRepository();
-const cartRepo = new SQLiteCartRepository(sqliteConnection);
+const cartRepo = new SQLiteCartRepository(db);
 const fakestoreapiGateway = new AxiosFakeStoreApiGateway();
 
 const getProductsUseCase = new GetProductsUseCase(productRepo);

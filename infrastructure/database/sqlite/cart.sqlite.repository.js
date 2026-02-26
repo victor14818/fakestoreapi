@@ -4,7 +4,7 @@ class SQLiteCartRepository extends CartRepository {
 
   constructor(dbConnection) {
     super();
-    this.db = dbConnection.getConnection();
+    this.db = dbConnection;
   }
 
   create({ userId, status }) {
