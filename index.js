@@ -29,6 +29,7 @@ const sqliteConnection = require('./infrastructure/database/sqlite/sqlite.connec
 const SQLiteProductRepository = require('./infrastructure/database/sqlite/product.sqlite.repository');
 const SeedProductRepository = require('./infrastructure/database/seed/product.seed.repository');
 const SQLiteCartRepository = require('./infrastructure/database/sqlite/cart.sqlite.repository');
+const AxiosFakeStoreApiGateway = require('./infrastructure/gateways/fakestoreapi/fakestoreapi.axios.gateway');
 
 app.use(express.json());
 
@@ -36,10 +37,11 @@ app.use(express.json());
 const productRepo = new SQLiteProductRepository(sqliteConnection);
 const productSeedRepo = new SeedProductRepository();
 const cartRepo = new SQLiteCartRepository(sqliteConnection);
+const fakestoreapiGateway = new AxiosFakeStoreApiGateway();
 
 const getProductsUseCase = new GetProductsUseCase(productRepo);
 const getProductByIdUseCase = new GetProductByIDUseCase(productRepo);
-const syncProductsUseCase = new SyncProductsUseCase(productSeedRepo, productRepo);
+const syncProductsUseCase = new SyncProductsUseCase(fakestoreapiGateway, productRepo);
 const getCatalogUseCase = new GetCatalogUseCase(productRepo);
 const getCatalogByIdUseCase = new GetCatalogByIdUseCase(productRepo);
 const createCartUseCase = new CreateCartUseCase(cartRepo);

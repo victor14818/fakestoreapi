@@ -1,19 +1,20 @@
 class SyncProductsUseCase {
 
-  constructor(seedProductRepository, productRepository) {
-    this.seedProductRepository = seedProductRepository;
+  constructor(seedProductGateway, productRepository) {
+    this.seedProductGateway = seedProductGateway;
     this.productRepository = productRepository;
   }
 
   async execute() {
-    const products = await this.seedProductRepository.findAll();
+    const products = await this.seedProductGateway.fetchProducts();
     
     // Simulating a 40% margin
     const costMargin = 0.6;
 
     products.forEach((x) => {
-      x.sku = `FS-${x.product_id}`;
+      x.sku = `FS-${x.id}`;
       x.cost = x.price * costMargin;
+      x.is_active = 1;
     });
 
     try {
